@@ -6,6 +6,7 @@ import './Header.css'
 
 export default class Header extends Component {
   handleLogoutClick = () => {
+    TokenService.clearAuthToken()
   }
 
   renderLogoutLink() {
@@ -46,9 +47,11 @@ export default class Header extends Component {
           </Link>
         </h1>
         <span className='Header__tagline--wide'>Rate all the things.</span>
-        {TokenService.hasAuthToken()
+        {
+          TokenService.hasAuthToken()
           ? this.renderLogoutLink()
-          : this.renderLoginLink()}
+          : this.renderLoginLink()
+          }
       </nav>
 
       <span className='Header__tagline--narrow'>Rate all the things.</span>
